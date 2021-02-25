@@ -1,0 +1,46 @@
+.userDetailRow {
+	margin-top: 20px;
+}
+
+.logoContainer {
+	display: flex;
+	justify-content: center;
+	padding-top: 30px
+}
+
+.logo {
+	height: 150px;
+	width: 150px;
+	background: #c6ddf7;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo span {
+	font-size: 60px;
+	font-weight: bold;
+}
+
+.contactCol {
+	border: 1px solid #e0dddd;
+	background: #f7f5f5;
+	border-radius: 4px
+}
+
+.contactCol p{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.contactInformation > div{
+	display: flex;
+	padding: 10px 0
+}
+
+.contactInformation > div > div:first-child{
+	width: 30%;
+	font-weight: bold;
+}
