@@ -1,0 +1,47 @@
+.countriesRow {
+	margin-top: 40px;
+}
+
+.pageTitle {
+	font-weight: bold;
+	margin-top: 40px;
+}
+.countryCol {
+	margin-bottom: 20px;
+	position: relative;
+}
+.card {
+	min-height: 200px;
+}
+.countryName {
+	font-weight: bold;
+}
+
+.countryCol:hover .overlay {
+	height: 100%;
+}
+
+.overlay {
+	background: rgb(46, 45, 45, .9);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 0;
+	transition: 0.3s ease;
+}
+
+.listGroupItem {
+	background-color: transparent !important;
+	color: white;
+}
+
+.globalTitle {
+	margin: 40px 0;
+	font-weight: bold;
+	text-align: center;
+}
+.globalCard {
+	font-size: 25px;
+	text-align: center;
+}

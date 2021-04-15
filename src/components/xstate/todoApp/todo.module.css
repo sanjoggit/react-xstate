@@ -1,0 +1,45 @@
+h3 {
+	text-align: center;
+	padding-top: 20px;
+}
+.form {
+	margin: 40px 0 20px;
+}
+
+.form > input {
+	padding: 32px;
+}
+.ctrlBtnContainer {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.ctrlBtn > button {
+	padding: 2px 4px
+}
+
+.ctrlBtn > button:not(:last-child) {
+	margin-right: 10px
+}
+
+.listItem {
+	display: flex !important;
+	justify-content: space-between;
+	align-items: center !important;
+}
+.leftItem {
+	display: flex;
+	align-items: center;
+}
+.leftItem > div {
+	margin-right: 10px;
+}
+.rightItem {
+	display: flex;
+}
+input[type=checkbox] {
+	height: 20px;
+	width: 20px
+}

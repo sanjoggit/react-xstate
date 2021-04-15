@@ -5,32 +5,34 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import classes from "./userDetail.module.css";
 import SpinnerComponent from "../SpinnerComponent";
 import ButtonComponent from "../ButtomComponent";
+import useSWR from "swr";
 
 const UserDetail = () => {
-	const [user, setUser] = useState(null);
-	const [userLoaded, setUserLoaded] = useState(false);
-
 	const { id } = useParams();
+	const {data, error} = useSWR(`https://jsonplaceholder.typicode.com/users/${id}`)
+	// const [user, setUser] = useState(null);
+	// const [userLoaded, setUserLoaded] = useState(false);
 
-	useEffect(() => {
-		if (id) {
-			getUserDetail();
-		}
+	// useEffect(() => {
+		//getUserDetail();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [id]);
+	// }, [id]);
 
-	const getUserDetail = () => {
-		axios
-			.get(`https://jsonplaceholder.typicode.com/users/${id}`)
-			.then(result => {
-				setUser(result.data);
-				setUserLoaded(true);
-			})
-			.catch(err => console.error(err));
-	};
-	if (!userLoaded) {
-		return <SpinnerComponent />;
-	}
+	// const getUserDetail = () => {
+	// 	axios
+	// 		.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+	// 		.then((result) => {
+	// 			setUser(result.data);
+	// 			setUserLoaded(true);
+	// 		})
+	// 		.catch((err) => console.error(err));
+	// };
+	// if (!userLoaded) {
+	// 	return <SpinnerComponent />;
+	// }
+
+	if (error) return <div>failed to load</div>
+	if (!data) return <SpinnerComponent />;
 
 	return (
 		<Container>
@@ -46,13 +48,13 @@ const UserDetail = () => {
 					<Card className="text-center">
 						<div className={classes.logoContainer}>
 							<div className={classes.logo}>
-								<span>{user.name.charAt(0)}</span>
+								<span>{data.name.charAt(0)}</span>
 							</div>
 						</div>
 						<Card.Body>
-							<Card.Title>{user.name}</Card.Title>
+							<Card.Title>{data.name}</Card.Title>
 							<Card.Subtitle className="mb-2 text-muted">
-								{user.username}
+								{data.username}
 							</Card.Subtitle>
 						</Card.Body>
 					</Card>
@@ -62,25 +64,25 @@ const UserDetail = () => {
 					<div className={classes.contactInformation}>
 						<div>
 							<div>Email:</div>
-							<div>{user.email.toLowerCase()}</div>
+							<div>{data.email.toLowerCase()}</div>
 						</div>
 						<div>
-							<div>Phone:</div> <div>{user.phone}</div>
+							<div>Phone:</div> <div>{data.phone}</div>
 						</div>
 						<div>
-							<div>Company:</div> <div>{user.company.name}</div>
+							<div>Company:</div> <div>{data.company.name}</div>
 						</div>
 						<div>
 							<div>Website: </div>
-							<div>{user.website}</div>
+							<div>{data.website}</div>
 						</div>
 						<div>
 							<div>Address:</div>{" "}
 							<div>
-								<div>City: {user.address.city}</div>
-								<div>Street: {user.address.street}</div>
-								<div>Suite: {user.address.suite}</div>
-								<div>Zipcode: {user.address.zipcode}</div>
+								<div>City: {data.address.city}</div>
+								<div>Street: {data.address.street}</div>
+								<div>Suite: {data.address.suite}</div>
+								<div>Zipcode: {data.address.zipcode}</div>
 							</div>
 						</div>
 					</div>

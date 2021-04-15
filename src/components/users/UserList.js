@@ -4,34 +4,38 @@ import axios from "axios";
 import classes from "./user.module.css";
 import User from "./user";
 import SpinnerComponent from "../SpinnerComponent";
+import useSWR from "swr";
 
 const UserList = () => {
-	const [users, setUsers] = useState([]);
-	const [userLoaded, setUserLoaded] = useState(false);
+	const {data, error} = useSWR("https://jsonplaceholder.typicode.com/users")
+	// const [users, setUsers] = useState([]);
+	// const [userLoaded, setUserLoaded] = useState(false);
 
-	useEffect(() => {
-		getUsers();
-	}, []);
+	// useEffect(() => {
+	// 	getUsers();
+	// }, []);
 
-	const getUsers = () => {
-		axios
-			.get("https://jsonplaceholder.typicode.com/users")
-			.then(result => {
-				setUsers(result.data);
-				setUserLoaded(true);
-			})
-			.catch(err => console.error(err));
-	};
+	// const getUsers = () => {
+	// 	axios
+	// 		.get("https://jsonplaceholder.typicode.com/users")
+	// 		.then(result => {
+	// 			setUsers(result.data);
+	// 			setUserLoaded(true);
+	// 		})
+	// 		.catch(err => console.error(err));
+	// };
 
-	if (!userLoaded) {
-		return <SpinnerComponent />;
-	}
+	// if (!userLoaded) {
+	// 	return <SpinnerComponent />;
+	// }
+	if (error) return <div>failed to load</div>
+	if (!data) return <SpinnerComponent />;
 
 	return (
 		<Container>
 			<p className={classes.heading}>Users</p>
 			<Row>
-				{users.map(user => (
+				{data.map(user => (
 					<Col
 						key={user.id}
 						xs={12}
